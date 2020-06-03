@@ -1,9 +1,15 @@
 import React from 'react';
 import './App.css';
 
+import Header from './Header';
+
 function App() {
   return (
-        <h1>E-Coleta</h1>
+        <div>
+          <Header title="Hello World!" />
+
+          <h1>Conteúdo da Aplicação</h1>
+        </div>
   );
 }
 
