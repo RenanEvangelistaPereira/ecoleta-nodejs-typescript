@@ -213,7 +213,7 @@ const CreatePoint = () => {
                             <select name="city" id="city" value={selectedCity} onChange={handleSelectedCity}>
                                 <option value="0">-- Selecione a cidade --</option>
                                 {cities.map(city => (
-                                    <option key={city.id} value={`${city.id}-${city.nome}`}>{city.nome}</option>
+                                    <option key={city.id} value={city.nome}>{`${city.nome} - ${city.id}`}</option>
                                 ))}
                             </select>
                         </div>

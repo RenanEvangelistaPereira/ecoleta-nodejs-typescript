@@ -76,8 +76,8 @@ const Points = () => {
     function handleNavigationBack(){
         navigation.goBack();
     }
-    function handleNavigationToDetail(){
-        navigation.navigate('Detail');
+    function handleNavigationToDetail(id: number){
+        navigation.navigate('Detail', { point_id: id });
     }
 
     function handleSelectItem(id: number){
@@ -112,14 +112,20 @@ const Points = () => {
                 latitudeDelta: 0.014,
                 longitudeDelta: 0.014,
             }}>
-                <Marker style={styles.mapMarker} 
-                    onPress={handleNavigationToDetail}
-                    coordinate={{ latitude: -10.907667, longitude: -37.027184}}>
-                  <View style={styles.mapMarkerContainer}> 
-                    <Image style={styles.mapMarkerImage} source={{ uri: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60'}} />
-                    <Text style={styles.mapMarkerTitle}>Mercado</Text>
-                  </View>
-                </Marker>
+
+              {points.map(point => (
+                    <Marker key={String(point.id)} 
+                        style={styles.mapMarker} 
+                        onPress={() => handleNavigationToDetail(point.id)}
+                        coordinate={{ latitude: point.latitude, longitude: point.longitude}}>
+                      <View style={styles.mapMarkerContainer}> 
+                        <Image style={styles.mapMarkerImage} source={{ uri: point.image }} />
+                        <Text style={styles.mapMarkerTitle}>{point.name}</Text>
+                      </View>
+                    </Marker>
+                ))}
+
+
           </MapView>                  
             )}
             </View>
